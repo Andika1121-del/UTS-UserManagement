@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Admin Gudang</title>
+
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== Mata Password ===== */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+.password-wrapper .toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #777;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.password-wrapper .toggle-password:hover {
+  color: #222;
+  transform: scale(1.15);
+}
+.toggle-password.active .fa-eye {
+  display: none;
+}
+.toggle-password.active .fa-eye-slash {
+  display: inline-block;
+}
+.toggle-password .fa-eye-slash {
+  display: none;
+}
+@keyframes pointAnimation {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+.toggle-password.pointing {
+  animation: pointAnimation 0.5s ease-in-out;
+}
+
+/* ===== Efek Fokus Input ===== */
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+}
+
+/* ===== Alert Validasi Email ===== */
+.email-alert {
+  display: none;
+  margin-top: 5px;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  animation: slideIn 0.4s ease;
+}
+.email-alert.error {
+  background: #ffe6e6;
+  color: #d93025;
+  border: 1px solid #ffb3b3;
+}
+.email-alert.success {
+  background: #e6ffea;
+  color: #0a8a3a;
+  border: 1px solid #9ae6b4;
+}
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+  <div class="form-wrapper">
+    <div class="form-box">
+      <h2><i class="fas fa-user-shield"></i> Login Admin Gudang</h2>
+
+      <form action="http://localhost/user-management/auth/process_login.php" method="POST">
+
+        <label>Email</label>
+        <div class="input-group">
+          <input type="email" id="email" name="email" placeholder="Masukkan email" required>
+          <div id="emailAlert" class="email-alert"></div>
+        </div>
+
+        <label>Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+          <span class="toggle-password" id="togglePassword">
+            <i class="fas fa-eye"></i>
+            <i class="fas fa-eye-slash"></i>
+          </span>
+        </div>
+
+        <button type="submit" class="btn">
+          <i class="fas fa-right-to-bracket"></i> Masuk
+        </button>
+      </form>
+
+      <div class="links-vertical">
+        <a href="register.html">Buat Akun Baru / Daftar Akun Baru</a>
+        <a href="forgot_password.html">Lupa Password?</a>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+// === Toggle Password ===
+const togglePassword = document.getElementById('togglePassword');
+const passwordField = document.getElementById('password');
+togglePassword.addEventListener('click', function() {
+  const isPassword = passwordField.type === 'password';
+  passwordField.type = isPassword ? 'text' : 'password';
+  this.classList.toggle('active');
+  this.classList.add('pointing');
+  setTimeout(() => this.classList.remove('pointing'), 500);
+});
+
+// === Validasi Email Live ===
+const emailInput = document.getElementById('email');
+const emailAlert = document.getElementById('emailAlert');
+
+emailInput.addEventListener('input', () => {
+  const email = emailInput.value.trim();
+  const regex = /^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+  if (email === "") {
+    emailAlert.style.display = "none";
+  } else if (!regex.test(email)) {
+    emailAlert.style.display = "block";
+    emailAlert.className = "email-alert error";
+    emailAlert.innerHTML = "<i class='fas fa-triangle-exclamation'></i> Format email tidak valid!";
+  } else {
+    emailAlert.style.display = "block";
+    emailAlert.className = "email-alert success";
+    emailAlert.innerHTML = "<i class='fas fa-check-circle'></i> Format email sudah benar ✅";
+  }
+});
+</script>
+
+</body>
+</html>

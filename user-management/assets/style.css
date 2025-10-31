@@ -1,0 +1,263 @@
+/* ============================
+   VARIABEL & DASAR
+============================ */
+:root {
+  --bg-a: #a6c0fe;
+  --bg-b: #f68084;
+  --primary: #007bff;
+  --primary-dark: #0056b3;
+  --muted: #6b7280;
+  --card-bg: #ffffff;
+  --success-a: #D1FAE5;
+  --success-b: #A7F3D0;
+  --error-a: #FEE2E2;
+  --error-b: #FECACA;
+  --shadow: 0 14px 40px rgba(6, 24, 44, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, var(--bg-a), var(--bg-b));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================
+   WRAPPER & CARD
+============================ */
+.form-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.form-box, .status-box {
+  width: 360px;
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-box:hover, .status-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 56px rgba(6, 24, 44, 0.18);
+}
+
+/* ============================
+   HEADING
+============================ */
+.form-box h2, .status-box h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+}
+/* ===== TOMBOL LOGIN (utama) ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #3399ff, #004999);
+  transform: translateY(-2px);
+}
+
+.btn i {
+  font-size: 16px;
+}
+
+
+/* ============================
+   LABELS & INPUTS
+============================ */
+label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.98));
+  font-size: 14px;
+  color: #111827;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 6px 18px rgba(0,123,255,0.12);
+  outline: none;
+}
+
+/* ============================
+   BUTTONS
+============================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 18px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn i {
+  font-size: 16px;
+}
+
+/* ============================
+   STATUS BOX (Success/Error)
+============================ */
+.status-box {
+  text-align: center;
+}
+
+.status-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 12px;
+  font-size: 26px;
+}
+
+.status-icon.success {
+  background: linear-gradient(135deg, var(--success-a), var(--success-b));
+  color: #059669;
+}
+
+.status-icon.error {
+  background: linear-gradient(135deg, var(--error-a), var(--error-b));
+  color: #B91C1C;
+}
+
+.status-box p {
+  color: #374151;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+/* wrap link panjang */
+.status-box a {
+  color: var(--primary);
+  word-break: break-word;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.status-box a:hover {
+  color: var(--primary-dark);
+}
+
+/* ============================
+   LINKS (di bawah form)
+============================ */
+.links-vertical {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.links-vertical a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.links-vertical a:hover {
+  color: var(--primary-dark);
+}
+
+/* ============================
+   UTILITIES
+============================ */
+.center { text-align: center; }
+.small { font-size: 13px; color: var(--muted); }
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 480px) {
+  .form-box, .status-box {
+    width: 92%;
+    padding: 20px;
+    border-radius: 14px;
+  }
+  .btn {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
+/* Tombol daftar */
+.btn-register {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.btn-register:hover {
+  background: linear-gradient(135deg, #66BB6A, #388E3C);
+  transform: translateY(-2px);
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registrasi Admin Gudang</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ====== Tombol Register ====== */
+.btn.register {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+.btn.register:hover {
+  background: linear-gradient(135deg, #339CFF, #004A99);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 86, 179, 0.3);
+}
+
+/* ===== Input Wrapper ===== */
+.input-wrapper {
+  position: relative;
+}
+.input-wrapper input {
+  width: 100%;
+  padding-left: 38px;
+  padding-right: 38px;
+}
+.input-wrapper i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #777;
+  font-size: 15px;
+}
+
+/* ===== Toggle Mata ===== */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #777;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.toggle-password:hover {
+  color: #222;
+  transform: scale(1.15);
+}
+.toggle-password.active .fa-eye {
+  display: none;
+}
+.toggle-password.active .fa-eye-slash {
+  display: inline-block;
+}
+.toggle-password .fa-eye-slash {
+  display: none;
+}
+
+/* Animasi lucu pas klik (nunjuk dikit) */
+@keyframes pointAnimation {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+.toggle-password.pointing {
+  animation: pointAnimation 0.5s ease-in-out;
+}
+
+/* ===== Efek Fokus Input ===== */
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+}
+
+/* ===== Link ke Login ===== */
+p {
+  margin-top: 20px;
+  text-align: center;
+}
+p a {
+  text-decoration: none;
+  color: #007bff;
+}
+p a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+  <div class="form-wrapper">
+    <div class="form-box">
+      <h2><i class="fas fa-user-gear"></i> Registrasi Admin Gudang</h2>
+
+      <form action="process_register.php" method="POST">
+
+        <label>Nama Lengkap</label>
+        <div class="input-wrapper">
+          <i class="fas fa-user"></i>
+          <input type="text" name="name" placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <label>Email</label>
+        <div class="input-wrapper">
+          <i class="fas fa-envelope"></i>
+          <input type="email" name="email" placeholder="Masukkan email" required>
+        </div>
+
+        <label>Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+          <span class="toggle-password" data-target="password">
+            <i class="fas fa-eye"></i>
+            <i class="fas fa-eye-slash"></i>
+          </span>
+        </div>
+
+        <button type="submit" class="btn register">
+          <i class="fas fa-user-plus"></i> Daftar
+        </button>
+      </form>
+
+      <p>
+        <a href="login.html"><i class="fas fa-arrow-left"></i> Sudah punya akun? Login</a>
+      </p>
+    </div>
+  </div>
+
+<script>
+const toggles = document.querySelectorAll('.toggle-password');
+
+toggles.forEach(toggle => {
+  toggle.addEventListener('click', function() {
+    const targetId = this.getAttribute('data-target');
+    const input = document.getElementById(targetId);
+    const isPassword = input.type === 'password';
+
+    input.type = isPassword ? 'text' : 'password';
+    this.classList.toggle('active');
+    this.classList.add('pointing');
+    setTimeout(() => this.classList.remove('pointing'), 500);
+  });
+});
+</script>
+
+</body>
+</html>
